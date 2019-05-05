@@ -4,15 +4,18 @@ service:
 # Add the serverless-webpack plugin
 plugins:
   - serverless-webpack
+  - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs8.10
+  region: eu-west-1
 
 functions:
-  hello:
-    handler: handler.hello
+  createCustomer:
+    handler: handler.createCustomer
     events:
       - http:
-          method: get
-          path: hello
+          method: post
+          path: create-customer
+          cors: true
